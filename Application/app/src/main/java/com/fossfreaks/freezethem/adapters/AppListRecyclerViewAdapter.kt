@@ -58,7 +58,8 @@ class AppListRecyclerViewAdapter(
         holder.appIcon.setImageDrawable(listOfApplications[position].applicationInfo.loadIcon(packageManager))
         holder.isCheckedToFreeze.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
-                Toast.makeText(holder.itemView.context, "Holdup", Toast.LENGTH_SHORT).show()
+                Toast.makeText(holder.itemView.context,
+                    listOfApplications[position].applicationInfo.sourceDir, Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(holder.itemView.context, "No", Toast.LENGTH_SHORT).show()
             }
@@ -67,6 +68,20 @@ class AppListRecyclerViewAdapter(
     }
 
     private fun isSystemApp(packageInfo: PackageInfo): Boolean {
-        return packageInfo.applicationInfo.sourceDir.contains("/system")
+        return when {
+            packageInfo.applicationInfo.sourceDir.contains("/system") -> {
+                true
+            }
+            packageInfo.applicationInfo.sourceDir.contains("/vendor") -> {
+                true
+            }
+            packageInfo.applicationInfo.sourceDir.contains("/product") -> {
+                true
+            }
+            packageInfo.applicationInfo.sourceDir.contains("/data") -> {
+                false
+            }
+            else -> packageInfo.applicationInfo.sourceDir.contains("/odm")
+        }
     }
 }
