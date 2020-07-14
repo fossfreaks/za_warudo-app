@@ -3,6 +3,7 @@ package com.fossfreaks.freezethem.helper
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.fossfreaks.freezethem.R
@@ -19,13 +20,17 @@ class AlertDialogHelper(private val context: Context) {
             .setNegativeButton("Copy the Logs!"){ dialog, _ ->
                 val clipData = ClipData.newPlainText("errorLog","$exception")
                 clipboardManager.setPrimaryClip(clipData)
-                Toast.makeText(context, "Copied Logs!", Toast.LENGTH_SHORT).show()
+                try {
+                    Toast.makeText(context, "Copied Logs!", Toast.LENGTH_SHORT).show()
+                }catch (e:Exception){
+                    Log.e("AlertDialogHelper", "displayExceptionAlert: As Excepted",e )
+                }
                 dialog.dismiss()
             }
-            .setNeutralButton("Copy CrashLog Url"){dialog, _ ->
-                //TODO : Callback for uploading and copy to clipboard
-                dialog.dismiss()
-            }
+//            .setNeutralButton("Copy CrashLog Url"){dialog, _ ->
+//                //TODO : Callback for uploading and copy to clipboard
+//                dialog.dismiss()
+//            }
             .show()
     }
     fun displayAlertDialog(title: String,message: String){
