@@ -22,20 +22,7 @@ class MainActivity : AppCompatActivity() {
         // TODO : Disable them with for loop
         // TODO : Show if they are disabled
         // TODO : ENABLE as user clicks unFreeze
-        /*
-        * TODO
-        *
-        *  1) it.applicationInfo.flags == ApplicationInfo.FLAG_SYSTEM || ApplicationInfo.FLAG_UPDATED_SYSTEM_APP
-        *
-        * Apps in system partition (/system) These apps will get the flag ApplicationInfo.FLAG_SYSTEM
-        * If an updated version is installed (probably not under /system), it will get ApplicationInfo.FLAG_UPDATED_SYSTEM_APP
-        * Apps signed with platform signature These apps will be granted signature level permission
-        * The signature is checked in PackageManagerService.java Apps in /system/priv-apps and /system/framework
-        * These apps will get the flag ApplicationInfo.PRIVATE_FLAG_PRIVILEGED
-        * The flag is set in PackageManagerService.java
-        * These apps will be granted signatureOrSystem level permissions (corresponding to the System in signatureOrSystem)
-        * For Samsung, apps in /system/carrier/priv-app and /odm/priv-app will also get this flag
-        * */
+
         apps_main_rc.layoutManager = LinearLayoutManager(this)
         apps_main_rc.adapter = AppListRecyclerViewAdapter(getAllApps())
 

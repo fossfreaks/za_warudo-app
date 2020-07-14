@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.graphics.drawable.Drawable
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,10 +51,11 @@ class AppListRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: AppListHolder, position: Int) {
         holder.initHolder()
-        holder.appName.text = listOfApplications[position].applicationInfo.name
+        val packageManager = holder.itemView.context.packageManager
+        holder.appName.text = listOfApplications[position].applicationInfo.loadLabel(packageManager)
         holder.appPackageName.text = listOfApplications[position].packageName
-        holder.appType.text = if(isSystemApp(listOfApplications[position])) "System" else "User"
-        holder.appIcon.setImageResource(listOfApplications[position].applicationInfo.icon)
+        holder.appType.text = if(isSystemApp(listOfApplications[position])) "System app" else "User app"
+        holder.appIcon.setImageDrawable(listOfApplications[position].applicationInfo.loadIcon(packageManager))
         holder.isCheckedToFreeze.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
                 Toast.makeText(holder.itemView.context, "Holdup", Toast.LENGTH_SHORT).show()
@@ -64,15 +67,6 @@ class AppListRecyclerViewAdapter(
     }
 
     private fun isSystemApp(packageInfo: PackageInfo): Boolean {
-        return when (packageInfo.applicationInfo.flags) {
-            ApplicationInfo.FLAG_SYSTEM -> {
-                return true
-            }
-            ApplicationInfo.FLAG_UPDATED_SYSTEM_APP -> {
-                // Return True if system app is updated
-                return true
-            }
-            else -> false
-        }
+        return packageInfo.applicationInfo.sourceDir.contains("/system")
     }
 }
