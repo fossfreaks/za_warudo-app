@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         // TODO : Show if they are disabled
         // TODO : ENABLE as user clicks unFreeze
 
-        apps_main_rc.layoutManager = LinearLayoutManager(this)
-        apps_main_rc.adapter = AppListRecyclerViewAdapter(getAllApps())
+//        apps_main_rc.layoutManager = LinearLayoutManager(this)
+//        apps_main_rc.adapter = AppListRecyclerViewAdapter(getAllApps())
 
     }
 
