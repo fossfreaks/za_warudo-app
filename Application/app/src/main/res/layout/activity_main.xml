@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/thai_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.MainActivity"
+    >
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:layout_marginBottom="56dp">
+
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/btm_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        app:layout_anchorGravity="top"
+        app:hideOnScroll="true"
         android:hapticFeedbackEnabled="true"
-        app:backgroundTint="#5C6BC0"
+        app:navigationIcon="@drawable/ic_baseline_menu_24"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         app:fabAlignmentMode="end"
         app:fabAnimationMode="scale" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:backgroundTint="#7986CB"
+        android:backgroundTint="@color/colorPrimary"
         android:backgroundTintMode="screen"
         android:elevation="12dp"
+        app:layout_anchorGravity="top|end"
         android:src="@drawable/ic_freeze_btn"
         app:layout_anchor="@id/btm_tool_bar"
-        app:rippleColor="#448AFF" />
-
+        app:rippleColor="@color/colorAccent" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
