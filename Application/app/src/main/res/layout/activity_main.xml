@@ -10,13 +10,11 @@
     tools:context=".ui.MainActivity"
     >
 
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:layout_marginBottom="56dp">
-
-    </androidx.core.widget.NestedScrollView>
+        android:layout_marginBottom="56dp"
+        android:id="@+id/fragment_frame"/>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/btm_tool_bar"

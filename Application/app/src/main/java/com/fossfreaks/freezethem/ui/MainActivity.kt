@@ -6,17 +6,20 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fossfreaks.freezethem.R
 import com.fossfreaks.freezethem.adapters.AppListRecyclerViewAdapter
 import com.fossfreaks.freezethem.ui.dialog.BottomMenuDialog
+import com.fossfreaks.freezethem.ui.fragments.MainFragment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.bottom_menu_sheets.*
 
 class MainActivity : AppCompatActivity() {
+    private var isFragmentStarted = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,12 +38,20 @@ class MainActivity : AppCompatActivity() {
         btm_tool_bar.setNavigationOnClickListener {
             bottomAppBar.show(supportFragmentManager,"Show_menu")
         }
+        if (!isFragmentStarted){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_frame,MainFragment())
+                .commit()
+        }
+
 
     }
 
-
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean =  true
+    override fun onAttachFragment(fragment: Fragment) {
+        super.onAttachFragment(fragment)
+        isFragmentStarted = true
+    }
 
     private fun getAllApps(): MutableList<PackageInfo> {
         val packageManager = packageManager
