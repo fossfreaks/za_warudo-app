@@ -30,14 +30,15 @@
         app:fabAnimationMode="scale" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/freeze_btn"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:backgroundTint="@color/colorPrimary"
         android:backgroundTintMode="screen"
         android:elevation="12dp"
-        app:layout_anchorGravity="top|end"
         android:src="@drawable/ic_freeze_btn"
         app:layout_anchor="@id/btm_tool_bar"
+        app:layout_anchorGravity="top|end"
         app:rippleColor="@color/colorAccent" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
