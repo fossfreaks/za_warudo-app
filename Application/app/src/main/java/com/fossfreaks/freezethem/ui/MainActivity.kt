@@ -44,8 +44,6 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.fragment_frame,MainFragment())
                 .commit()
         }
-
-
     }
 
     override fun onAttachFragment(fragment: Fragment) {
