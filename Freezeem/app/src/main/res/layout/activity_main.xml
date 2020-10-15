@@ -39,6 +39,7 @@
         android:src="@drawable/ic_freeze_btn"
         app:layout_anchor="@id/btm_tool_bar"
         app:layout_anchorGravity="top|end"
-        app:rippleColor="@color/purple_500" />
+        app:rippleColor="@color/purple_500"
+        android:contentDescription="@string/app_name" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
